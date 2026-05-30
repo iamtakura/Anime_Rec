@@ -96,3 +96,28 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* --- Progressive Enhancement & Fail-safe Visibility --- */
+
+/* 1. Default: Make content visible immediately for no-JS environments and early fallbacks */
+#main-content,
+.hero-section,
+.genre-section {
+  opacity: 1;
+}
+
+/* 2. Hide only if JavaScript has successfully executed and added the 'js-loaded' class,
+   signaling that the interactive animations will handle the intro. */
+body.js-loaded #main-content,
+body.js-loaded .hero-section,
+body.js-loaded .genre-section {
+  opacity: 0;
+}
+
+/* 3. Force visibility once the intro is complete (either naturally or through fallback).
+   This acts as an unbreakable fallback if GSAP behaves unexpectedly after page load. */
+body.intro-complete #main-content,
+body.intro-complete .hero-section,
+body.intro-complete .genre-section {
+  opacity: 1 !important;
+}

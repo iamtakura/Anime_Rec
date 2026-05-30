@@ -46,10 +46,44 @@ const { title, description } = Astro.props;
 
       // Ensure this only runs on the client side
       if (typeof window !== 'undefined') {
+        // Immediately add js-loaded class to body to signal animations will run
+        document.body.classList.add('js-loaded');
+
+        let animationCompleted = false;
+
         const lenis = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
+
+        // Fail-safe fallback function to instantly force page visibility
+        const forceVisible = () => {
+          if (animationCompleted) return;
+          animationCompleted = true;
+
+          if (fallbackTimer) {
+            clearTimeout(fallbackTimer);
+          }
+
+          // Force all main layout and animated sections to final visible state
+          gsap.set('#main-content', { opacity: 1, clearProps: 'transform' });
+          gsap.set('.hero-section', { opacity: 1, clearProps: 'transform' });
+          gsap.set('.genre-section', { opacity: 1, clearProps: 'transform' });
+          gsap.set('.genre-title-wrapper, .genre-desc, .anime-card', { opacity: 1, y: 0, clearProps: 'all' });
+          gsap.set('#intro-title', { opacity: 1, clearProps: 'transform' });
+          gsap.set('#intro-overlay', { display: 'none' });
+
+          // Enable scrolling and trigger layout updates
+          lenis.start();
+          document.body.style.overflow = '';
+          document.body.classList.add('intro-complete');
+          ScrollTrigger.refresh();
+
+          console.log("Progressive enhancement: page forced to final visible state.");
+        };
+
+        // Set hard fallback timer (3 seconds) to ensure content is never permanently hidden
+        const fallbackTimer = setTimeout(forceVisible, 3000);
 
         // Initial setup: stop lenis and hide main content
         lenis.stop();
@@ -58,31 +92,33 @@ const { title, description } = Astro.props;
         // Page Transition Timeline
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
-        if (prefersReducedMotion) {
-          gsap.set('#intro-overlay', { display: 'none' });
-          gsap.set('#main-content', { opacity: 1 });
-          lenis.start();
-        } else {
-          const tl = gsap.timeline({
-            onComplete: () => {
-              lenis.start(); // Re-enable scrolling
-              document.body.style.overflow = ''; 
-            }
-          });
+        try {
+          if (prefersReducedMotion) {
+            forceVisible();
+          } else {
+            const tl = gsap.timeline({
+              onComplete: () => {
+                forceVisible();
+              }
+            });
 
-          tl.fromTo('#intro-title', 
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-          )
-          .to('#intro-title', {
-            y: -50, opacity: 0, duration: 0.8, ease: 'power3.in', delay: 1.2
-          })
-          .to('#intro-overlay', {
-            yPercent: -100, duration: 1, ease: 'power4.inOut'
-          }, '-=0.4')
-          .to('#main-content', {
-            opacity: 1, duration: 1, ease: 'power2.out'
-          }, '-=0.8');
+            tl.fromTo('#intro-title', 
+              { y: 50, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+            )
+            .to('#intro-title', {
+              y: -50, opacity: 0, duration: 0.8, ease: 'power3.in', delay: 1.2
+            })
+            .to('#intro-overlay', {
+              yPercent: -100, duration: 1, ease: 'power4.inOut'
+            }, '-=0.4')
+            .to(['#main-content', '.hero-section', '.genre-section'], {
+              opacity: 1, duration: 1, ease: 'power2.out'
+            }, '-=0.8');
+          }
+        } catch (e) {
+          console.error("Intro animation error caught:", e);
+          forceVisible();
         }
 
         // Sync ScrollTrigger with Lenis

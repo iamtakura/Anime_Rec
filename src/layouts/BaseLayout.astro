@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import CustomCursor from '../components/CustomCursor.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/hero-bg-social.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <CustomCursor />
+
+    <!-- Intro Overlay -->
+    <div class="intro-overlay" id="intro-overlay">
+      <h1 class="intro-title" id="intro-title">Where Do I Start?</h1>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content-wrapper" id="main-content">
+      <slot />
+    </div>
+
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Ensure this only runs on the client side
+      if (typeof window !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+
+        // Initial setup: stop lenis and hide main content
+        lenis.stop();
+        gsap.set('#main-content', { opacity: 0 });
+
+        // Page Transition Timeline
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+          gsap.set('#intro-overlay', { display: 'none' });
+          gsap.set('#main-content', { opacity: 1 });
+          lenis.start();
+        } else {
+          const tl = gsap.timeline({
+            onComplete: () => {
+              lenis.start(); // Re-enable scrolling
+              document.body.style.overflow = ''; 
+            }
+          });
+
+          tl.fromTo('#intro-title', 
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+          )
+          .to('#intro-title', {
+            y: -50, opacity: 0, duration: 0.8, ease: 'power3.in', delay: 1.2
+          })
+          .to('#intro-overlay', {
+            yPercent: -100, duration: 1, ease: 'power4.inOut'
+          }, '-=0.4')
+          .to('#main-content', {
+            opacity: 1, duration: 1, ease: 'power2.out'
+          }, '-=0.8');
+        }
+
+        // Sync ScrollTrigger with Lenis
+        lenis.on('scroll', ScrollTrigger.update);
+
+        // Use requestAnimationFrame to update Lenis through GSAP ticker
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+
+        // Disable lag smoothing in GSAP to avoid jumps
+        gsap.ticker.lagSmoothing(0);
+
+        // Expose lenis globally for velocity effects in other components
+        window.lenis = lenis;
+        
+        console.log("Lenis & GSAP successfully initialized client-side.");
+      }
+    </script>
+  </body>
+</html>

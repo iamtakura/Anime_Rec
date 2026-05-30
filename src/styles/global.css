@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Color Variables */
+:root {
+  /* Action */
+  --color-action-primary: #FF4500;
+  --color-action-secondary: #1A0A00;
+  --color-action-accent: #FF7A00;
+
+  /* Romance */
+  --color-romance-primary: #FF6B9D;
+  --color-romance-secondary: #1A0010;
+  --color-romance-accent: #FFB3CC;
+
+  /* Isekai */
+  --color-isekai-primary: #7B2FBE;
+  --color-isekai-secondary: #0D0015;
+  --color-isekai-accent: #C77DFF;
+
+  /* Psychological */
+  --color-psychological-primary: #00B4D8;
+  --color-psychological-secondary: #000A0F;
+  --color-psychological-accent: #90E0EF;
+
+  /* Comedy */
+  --color-comedy-primary: #F4A100;
+  --color-comedy-secondary: #130D00;
+  --color-comedy-accent: #FFD166;
+
+  /* Slice of Life */
+  --color-slice-of-life-primary: #52B788;
+  --color-slice-of-life-secondary: #021A0D;
+  --color-slice-of-life-accent: #95D5B2;
+}
+
+/* Global Styles */
+html,
+body {
+  background-color: #080808;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Smooth Scrolling styling for Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

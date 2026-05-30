@@ -1,0 +1,105 @@
+---
+interface Props {
+  genres: any[];
+}
+const { genres } = Astro.props;
+---
+<nav class="progress-nav" aria-label="Genre Navigation">
+  <ul class="nav-list">
+    {genres.map((genre: any) => (
+      <li class="nav-item" data-target={genre.id} style={`--nav-color: ${genre.color.primary}`}>
+        <a href={`#${genre.id}`} class="nav-link" aria-label={`Scroll to ${genre.label}`}>
+          <span class="nav-dot"></span>
+          <span class="nav-label">{genre.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .progress-nav {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.3s ease;
+  }
+  
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex-shrink: 0;
+  }
+  
+  .nav-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  
+  /* Active State */
+  .nav-item.active .nav-link {
+    color: var(--nav-color);
+  }
+  
+  .nav-item.active .nav-dot {
+    background-color: var(--nav-color);
+    transform: scale(1.5);
+    box-shadow: 0 0 15px var(--nav-color);
+  }
+  
+  .nav-item.active .nav-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--nav-color);
+  }
+
+  /* Hover state */
+  .nav-link:hover .nav-dot {
+    background-color: rgba(255,255,255,0.8);
+    transform: scale(1.2);
+  }
+  
+  .nav-link:hover .nav-label {
+    opacity: 0.7;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 768px) {
+    .progress-nav {
+      display: none;
+    }
+  }
+</style>

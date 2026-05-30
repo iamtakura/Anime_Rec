@@ -1,0 +1,411 @@
+---
+import AnimeCard from './AnimeCard.astro';
+
+interface Props {
+  genre: {
+    id: string;
+    label: string;
+    emoji: string;
+    tagline: string;
+    color: { primary: string; secondary: string; accent: string };
+    anime: any[];
+  };
+  images: Record<string, any>;
+}
+
+const { genre, images } = Astro.props;
+
+// Pass the first anime as initial preview state
+const firstAnime = genre.anime[0] || {};
+const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
+---
+
+<section 
+  id={genre.id} 
+  data-genre={genre.id} 
+  class={`genre-section theme-${genre.id}`}
+  style={`--primary-color: ${genre.color.primary}; --secondary-color: ${genre.color.secondary}; --accent-color: ${genre.color.accent}; background-color: #080808;`}
+  aria-label={`${genre.label} Anime Recommendations`}
+>
+  <div class="genre-bg"></div>
+  
+  <div class="container">
+    <div class="layout-grid">
+      
+      <!-- Left Column: Sticky Intro -->
+      <div class="sticky-column intro-column">
+        <div class="genre-intro">
+          <span class="genre-badge">{genre.emoji} GENRE {genre.id.toUpperCase()}</span>
+          <div class="genre-title-wrapper">
+            <h2 class="genre-title"><span class="genre-title-inner">{genre.label}</span></h2>
+          </div>
+          <p class="genre-desc">{genre.tagline}</p>
+          <div class="anime-count">{genre.anime.length} Recommended Shows</div>
+        </div>
+      </div>
+
+      <!-- Middle Column: Anime List -->
+      <div class="anime-list">
+        {genre.anime.map((animeItem: any) => {
+          const imageSrc = images[`/src/assets/images/${animeItem.image}`]?.default;
+          return <AnimeCard anime={animeItem} imageSrc={imageSrc} />;
+        })}
+      </div>
+
+      <!-- Right Column: Sticky Preview Panel -->
+      <div class="sticky-column preview-column">
+        <div class="preview-panel" id={`preview-${genre.id}`}>
+          <div class="preview-image-container">
+            {firstImage && <img src={firstImage.src} alt={firstAnime.title} class="preview-image current" id={`preview-img-${genre.id}`} />}
+          </div>
+          <div class="preview-info">
+            <h3 class="preview-title" id={`preview-title-${genre.id}`}>{firstAnime.title}</h3>
+            <p class="preview-description" id={`preview-desc-${genre.id}`}>{firstAnime.description}</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sections = document.querySelectorAll('.genre-section');
+  
+  sections.forEach(section => {
+    const genreId = section.getAttribute('data-genre');
+    const previewImg = section.querySelector(`#preview-img-${genreId}`) as HTMLImageElement;
+    const previewTitle = section.querySelector(`#preview-title-${genreId}`);
+    const previewDesc = section.querySelector(`#preview-desc-${genreId}`);
+    
+    // Preview hover logic
+    section.addEventListener('anime:hover', (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const data = customEvent.detail;
+      
+      if (previewImg && previewImg.src !== data.imageSrc) {
+        previewImg.style.opacity = '0';
+        previewImg.style.transform = 'translateY(-10px)';
+        
+        setTimeout(() => {
+          previewImg.src = data.imageSrc;
+          previewImg.alt = data.title;
+          if (previewTitle) previewTitle.textContent = data.title;
+          if (previewDesc) previewDesc.textContent = data.description;
+          
+          previewImg.style.opacity = '1';
+          previewImg.style.transform = 'translateY(0)';
+        }, 150);
+      }
+    });
+
+    // --- Phase 3 Animations ---
+    
+    // Accessibility: Reduced Motion Check
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      // Animate background color from #080808 to secondary color
+      const secondaryColor = (section as HTMLElement).style.getPropertyValue('--secondary-color');
+      gsap.to(section, {
+        backgroundColor: secondaryColor,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate Title
+      const titleWrapper = section.querySelector('.genre-title-wrapper');
+      gsap.fromTo(titleWrapper, 
+        { y: 60, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Animate Tagline
+      const desc = section.querySelector('.genre-desc');
+      gsap.fromTo(desc,
+        { y: 60, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 0.8, delay: 0.15, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Animate Anime Cards Stagger
+      const cards = section.querySelectorAll('.anime-card');
+      gsap.fromTo(cards,
+        { y: 40, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 0.8, stagger: 0.07, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Lenis Velocity Skew Effect
+      const titleInner = section.querySelector('.genre-title-inner') as HTMLElement;
+      const checkLenis = setInterval(() => {
+        // @ts-ignore
+        if (window.lenis) {
+          clearInterval(checkLenis);
+          // @ts-ignore
+          window.lenis.on('scroll', (e: any) => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              let skew = e.velocity * 0.15;
+              skew = Math.max(-6, Math.min(6, skew));
+              if (titleInner) {
+                titleInner.style.transform = `skewY(${skew}deg)`;
+              }
+            }
+          });
+        }
+      }, 100);
+    } else {
+      // If reduced motion is preferred, just set the background color immediately
+      const secondaryColor = (section as HTMLElement).style.getPropertyValue('--secondary-color');
+      (section as HTMLElement).style.backgroundColor = secondaryColor;
+    }
+
+    // ProgressNav Active State Sync
+    const updateNav = () => {
+      document.querySelectorAll('.progress-nav .nav-item').forEach(item => {
+        if (item.getAttribute('data-target') === genreId) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    };
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 50%',
+      end: 'bottom 50%',
+      onEnter: updateNav,
+      onEnterBack: updateNav,
+    });
+
+  });
+</script>
+
+<style>
+  .genre-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .genre-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at left center, var(--accent-color) 0%, transparent 60%);
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 5;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr 350px;
+    gap: 3rem;
+    align-items: start;
+    height: 100%;
+  }
+
+  .sticky-column {
+    position: sticky;
+    top: 6rem;
+    height: calc(100vh - 12rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro-column {
+    justify-content: center;
+  }
+
+  .genre-intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .genre-badge {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+
+  .genre-title-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .genre-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 6rem);
+    line-height: 0.9;
+    color: var(--primary-color);
+    text-shadow: 0 0 30px rgba(0,0,0,0.5);
+    perspective: 1000px;
+  }
+
+  .genre-title-inner {
+    display: inline-block;
+    transform-origin: left center;
+    transition: transform 0.1s ease-out; /* Smooth out velocity jitter */
+    will-change: transform;
+  }
+
+  .genre-desc {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  .anime-count {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+  }
+
+  .anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 6rem; 
+  }
+
+  .preview-panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow: hidden;
+  }
+
+  .preview-image-container {
+    width: 100%;
+    height: 50%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .preview-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  .preview-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    color: var(--primary-color);
+  }
+
+  .preview-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1200px) {
+    .layout-grid {
+      grid-template-columns: 250px 1fr 300px;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .genre-section {
+      padding: 0 1rem 4rem 1rem;
+    }
+    
+    .layout-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .intro-column {
+      position: sticky;
+      top: 0;
+      height: auto;
+      background: var(--secondary-color);
+      z-index: 20;
+      padding: 1.5rem 0;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .preview-column {
+      display: none;
+    }
+    
+    .anime-list {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+  }
+</style>

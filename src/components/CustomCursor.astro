@@ -1,0 +1,138 @@
+---
+// Custom Cursor Component for Desktop
+---
+<div class="custom-cursor" id="custom-cursor">
+  <span class="cursor-text">View</span>
+</div>
+
+<script>
+  // Ensure we only run this on desktop
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!isMobile && !prefersReducedMotion && typeof window !== 'undefined') {
+    const cursor = document.getElementById('custom-cursor');
+    
+    if (cursor) {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      
+      let cursorX = window.innerWidth / 2;
+      let cursorY = window.innerHeight / 2;
+      
+      let isHovering = false;
+
+      // Track mouse position
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Lerp function for smooth movement
+      const lerp = (start: number, end: number, factor: number) => {
+        return start + (end - start) * factor;
+      };
+
+      // Animation loop
+      const updateCursor = () => {
+        cursorX = lerp(cursorX, mouseX, 0.15);
+        cursorY = lerp(cursorY, mouseY, 0.15);
+        
+        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+        
+        requestAnimationFrame(updateCursor);
+      };
+      
+      updateCursor();
+
+      // Handle hover states on anime cards
+      // Use event delegation for dynamically updated DOM elements
+      document.body.addEventListener('mouseover', (e) => {
+        const target = e.target as HTMLElement;
+        const card = target.closest('.anime-card');
+        
+        if (card) {
+          isHovering = true;
+          cursor.classList.add('hover-active');
+          
+          // Find closest genre section to inherit its primary color
+          const section = card.closest('.genre-section') as HTMLElement;
+          if (section) {
+            const primaryColor = section.style.getPropertyValue('--primary-color');
+            if (primaryColor) {
+              cursor.style.backgroundColor = primaryColor;
+            }
+          }
+        } else if (isHovering) {
+          isHovering = false;
+          cursor.classList.remove('hover-active');
+          cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        }
+      });
+      
+      // Also hide default cursor on body
+      document.body.style.cursor = 'none';
+      
+      // Ensure any native clickable elements have cursor:none as well, except we override it globally
+      const style = document.createElement('style');
+      style.innerHTML = `
+        *, *::before, *::after {
+          cursor: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+</script>
+
+<style>
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px; /* Center */
+    margin-top: -8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                background-color 0.3s ease;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-text {
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .custom-cursor.hover-active {
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: -40px;
+    mix-blend-mode: normal;
+  }
+
+  .custom-cursor.hover-active .cursor-text {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (max-width: 768px) {
+    .custom-cursor {
+      display: none !important;
+    }
+  }
+</style>

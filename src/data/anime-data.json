@@ -1,0 +1,688 @@
+{
+  "genres": [
+    {
+      "id": "action",
+      "label": "Action",
+      "emoji": "💥",
+      "tagline": "High-octane thrills, amazing animation, and fast-paced storytelling.",
+      "color": {
+        "primary": "#FF4500",
+        "secondary": "#1A0A00",
+        "accent": "#FF7A00",
+        "text": "#FFE8D6"
+      },
+      "anime": [
+        {
+          "id": "cyberpunk-edgerunners",
+          "title": "Cyberpunk: Edgerunners",
+          "year": 2022,
+          "episodes": 10,
+          "studio": "Trigger",
+          "rating": 8.7,
+          "image": "cyberpunk-edgerunners.jpg",
+          "description": "A visually stunning, heartbreaking, and adrenaline-fueled ride set in the futuristic Night City. A street kid fights to survive in a world obsessed with power and body modification."
+        },
+        {
+          "id": "one-punch-man",
+          "title": "One Punch Man",
+          "year": 2015,
+          "episodes": 12,
+          "studio": "Madhouse",
+          "rating": 8.7,
+          "image": "one-punch-man.jpg",
+          "description": "A hilarious and beautifully animated take on the superhero genre where the main character defeats every enemy with a single punch — and is utterly bored by it."
+        },
+        {
+          "id": "chainsaw-man",
+          "title": "Chainsaw Man",
+          "year": 2022,
+          "episodes": 12,
+          "studio": "MAPPA",
+          "rating": 8.5,
+          "image": "chainsaw-man.jpg",
+          "description": "A cinematic, chaotic, and bloody modern hit about a down-on-his-luck guy who merges with a chainsaw demon and is pulled into a brutal world of devil hunters."
+        },
+        {
+          "id": "mob-psycho-100",
+          "title": "Mob Psycho 100",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "Bones",
+          "rating": 8.5,
+          "image": "mob-psycho-100.jpg",
+          "description": "From the creator of One Punch Man — a socially awkward middle-schooler with god-like psychic powers tries to live a normal life while suppressing emotions that could level a city."
+        },
+        {
+          "id": "vivy-fluorite-eyes-song",
+          "title": "Vivy: Fluorite Eye's Song",
+          "year": 2021,
+          "episodes": 13,
+          "studio": "Wit Studio",
+          "rating": 8.3,
+          "image": "vivy-fluorite-eyes-song.jpg",
+          "description": "An AI pop idol is sent 100 years into the past to alter key historical events and prevent a devastating war between humans and artificial intelligence."
+        },
+        {
+          "id": "lycoris-recoil",
+          "title": "Lycoris Recoil",
+          "year": 2022,
+          "episodes": 13,
+          "studio": "A-1 Pictures",
+          "rating": 8.2,
+          "image": "lycoris-recoil.jpg",
+          "description": "A secret organization of teenage girl assassins keeps Tokyo's peace from a café front. Think John Wick gun-fu meets cute cafe slice-of-life."
+        },
+        {
+          "id": "hells-paradise",
+          "title": "Hell's Paradise",
+          "year": 2023,
+          "episodes": 13,
+          "studio": "MAPPA",
+          "rating": 8.2,
+          "image": "hells-paradise.jpg",
+          "description": "A group of death-row criminals are sent to a beautiful but horrific island to find the elixir of life in exchange for a pardon. Not everyone will make it back."
+        },
+        {
+          "id": "akudama-drive",
+          "title": "Akudama Drive",
+          "year": 2020,
+          "episodes": 12,
+          "studio": "Pierrot",
+          "rating": 7.8,
+          "image": "akudama-drive.jpg",
+          "description": "A colorful, high-stakes cyberpunk heist where a group of elite criminals are assembled to pull off the ultimate job in a neon-drenched dystopian Japan."
+        },
+        {
+          "id": "solo-leveling",
+          "title": "Solo Leveling",
+          "year": 2024,
+          "episodes": 12,
+          "studio": "A-1 Pictures",
+          "rating": 8.4,
+          "image": "solo-leveling.jpg",
+          "description": "In a world where monster-hunting Hunters exist, the absolute weakest one discovers a secret system that lets him level up endlessly while everyone else stays the same."
+        },
+        {
+          "id": "deca-dence",
+          "title": "Deca-Dence",
+          "year": 2020,
+          "episodes": 12,
+          "studio": "NUT",
+          "rating": 7.9,
+          "image": "deca-dence.jpg",
+          "description": "A post-apocalyptic action show with a massive twist — humanity lives inside a giant mobile fortress battling monsters, but nothing is quite what it seems."
+        }
+      ]
+    },
+    {
+      "id": "romance",
+      "label": "Romance",
+      "emoji": "💖",
+      "tagline": "Sweet, funny, and emotional stories about love and connection.",
+      "color": {
+        "primary": "#FF6B9D",
+        "secondary": "#1A0010",
+        "accent": "#FFB3CC",
+        "text": "#FFE8F0"
+      },
+      "anime": [
+        {
+          "id": "horimiya",
+          "title": "Horimiya",
+          "year": 2021,
+          "episodes": 13,
+          "studio": "CloverWorks",
+          "rating": 8.2,
+          "image": "horimiya.jpg",
+          "description": "A breath of fresh air in the romance genre — skips the endless will-they-won't-they and focuses on two students finding real comfort in each other's hidden sides."
+        },
+        {
+          "id": "my-dress-up-darling",
+          "title": "My Dress-Up Darling",
+          "year": 2022,
+          "episodes": 12,
+          "studio": "CloverWorks",
+          "rating": 8.3,
+          "image": "my-dress-up-darling.jpg",
+          "description": "A lonely traditional doll-maker and a bubbly popular girl form an unlikely bond when she ropes him into making her elaborate cosplay outfits."
+        },
+        {
+          "id": "wotakoi",
+          "title": "Wotakoi: Love is Hard for Otaku",
+          "year": 2018,
+          "episodes": 11,
+          "studio": "A-1 Pictures",
+          "rating": 7.9,
+          "image": "wotakoi.jpg",
+          "description": "A relatable and funny adult romance about coworkers hiding their nerdy hobbies — gaming, manga, and all — while trying to date each other without anyone finding out."
+        },
+        {
+          "id": "tomo-chan-is-a-girl",
+          "title": "Tomo-chan Is a Girl!",
+          "year": 2023,
+          "episodes": 13,
+          "studio": "Lay-duce",
+          "rating": 7.8,
+          "image": "tomo-chan-is-a-girl.jpg",
+          "description": "A hilarious rom-com about a tomboy desperately trying to get her oblivious childhood best friend to see her as a woman — and not just his bro."
+        },
+        {
+          "id": "a-sign-of-affection",
+          "title": "A Sign of Affection",
+          "year": 2024,
+          "episodes": 12,
+          "studio": "Kinema Citrus",
+          "rating": 8.0,
+          "image": "a-sign-of-affection.jpg",
+          "description": "A beautifully animated, deeply sweet romance between a deaf college student and a well-traveled multilingual guy who literally stops to help her in a crowd."
+        },
+        {
+          "id": "tsuki-ga-kirei",
+          "title": "Tsuki ga Kirei",
+          "year": 2017,
+          "episodes": 12,
+          "studio": "feel.",
+          "rating": 8.2,
+          "image": "tsuki-ga-kirei.jpg",
+          "description": "One of the most realistic, grounded, and genuinely wholesome depictions of awkward middle-school first love ever animated. Simple, honest, and quietly beautiful."
+        },
+        {
+          "id": "recovery-of-an-mmo-junkie",
+          "title": "Recovery of an MMO Junkie",
+          "year": 2017,
+          "episodes": 10,
+          "studio": "Signal.MD",
+          "rating": 7.8,
+          "image": "recovery-of-an-mmo-junkie.jpg",
+          "description": "A 30-something woman quits her corporate job to play MMOs full-time and accidentally falls in love with a guildmate who keeps crossing her path in real life."
+        },
+        {
+          "id": "dangers-in-my-heart",
+          "title": "The Dangers in My Heart",
+          "year": 2023,
+          "episodes": 12,
+          "studio": "Shin-Ei Animation",
+          "rating": 8.3,
+          "image": "dangers-in-my-heart.jpg",
+          "description": "Starts with an edgy middle schooler convinced he's a villain, but quickly melts into one of the most heartwarming and genuinely funny romances in recent years."
+        },
+        {
+          "id": "shikimori",
+          "title": "Shikimori's Not Just a Cutie",
+          "year": 2022,
+          "episodes": 12,
+          "studio": "Doga Kobo",
+          "rating": 7.5,
+          "image": "shikimori.jpg",
+          "description": "A fluffy role-reversal romance where the boyfriend has the world's worst luck and his cool, athletic, effortlessly stylish girlfriend is constantly showing up to save him."
+        },
+        {
+          "id": "nagatoro",
+          "title": "Don't Toy With Me, Miss Nagatoro",
+          "year": 2021,
+          "episodes": 12,
+          "studio": "Telecom Animation Film",
+          "rating": 7.7,
+          "image": "nagatoro.jpg",
+          "description": "A mischievous, teasing underclassman latches onto a quiet, nerdy upperclassman artist and slowly — very slowly — the teasing becomes something a lot more genuine."
+        }
+      ]
+    },
+    {
+      "id": "isekai",
+      "label": "Isekai",
+      "emoji": "🚪",
+      "tagline": "Transported to another world — fantasy, magic, and RPG mechanics await.",
+      "color": {
+        "primary": "#7B2FBE",
+        "secondary": "#0D0015",
+        "accent": "#C77DFF",
+        "text": "#EDE0FF"
+      },
+      "anime": [
+        {
+          "id": "no-game-no-life",
+          "title": "No Game No Life",
+          "year": 2014,
+          "episodes": 12,
+          "studio": "Madhouse",
+          "rating": 8.1,
+          "image": "no-game-no-life.jpg",
+          "description": "Two genius gamer siblings are transported to a vibrant fantasy world where everything — from borders to lives — is settled by playing games. They've never lost."
+        },
+        {
+          "id": "konosuba",
+          "title": "KonoSuba: God's Blessing on this Wonderful World!",
+          "year": 2016,
+          "episodes": 10,
+          "studio": "Deen",
+          "rating": 8.2,
+          "image": "konosuba.jpg",
+          "description": "The funniest isekai ever made. A cynical teenager and his party of spectacularly useless teammates stumble through a fantasy world achieving absolutely nothing gracefully."
+        },
+        {
+          "id": "devil-is-a-part-timer",
+          "title": "The Devil is a Part-Timer!",
+          "year": 2013,
+          "episodes": 13,
+          "studio": "White Fox",
+          "rating": 7.9,
+          "image": "devil-is-a-part-timer.jpg",
+          "description": "A reverse isekai — the terrifying Demon Lord flees to modern-day Tokyo and ends up working at a fast-food burger joint just trying to pay rent. Genuinely hilarious."
+        },
+        {
+          "id": "grimgar",
+          "title": "Grimgar of Fantasy and Ash",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "A-1 Pictures",
+          "rating": 7.8,
+          "image": "grimgar.jpg",
+          "description": "A grounded, realistic isekai where the characters aren't overpowered heroes — they're scared kids struggling just to survive and kill low-level goblins for coin."
+        },
+        {
+          "id": "my-next-life-as-a-villainess",
+          "title": "My Next Life as a Villainess",
+          "year": 2020,
+          "episodes": 12,
+          "studio": "Silver Link",
+          "rating": 7.7,
+          "image": "my-next-life-as-a-villainess.jpg",
+          "description": "A girl reincarnates as the villain of her favorite dating-sim game and must desperately avoid every bad ending that leads to her doom — while accidentally charming everyone around her."
+        },
+        {
+          "id": "campfire-cooking",
+          "title": "Campfire Cooking in Another World",
+          "year": 2023,
+          "episodes": 12,
+          "studio": "Ease Entertainment",
+          "rating": 7.6,
+          "image": "campfire-cooking.jpg",
+          "description": "A relaxing isekai about a normal guy whose only magic skill is ordering groceries online from modern Japan. He uses it to cook incredible meals for legendary monsters."
+        },
+        {
+          "id": "saga-of-tanya-the-evil",
+          "title": "Saga of Tanya the Evil",
+          "year": 2017,
+          "episodes": 12,
+          "studio": "NUT",
+          "rating": 8.0,
+          "image": "saga-of-tanya-the-evil.jpg",
+          "description": "A ruthless, calculating Japanese salaryman is reincarnated as a magical little girl in an alternate-universe World War I. She proceeds to be terrifyingly competent."
+        },
+        {
+          "id": "uncle-from-another-world",
+          "title": "Uncle from Another World",
+          "year": 2022,
+          "episodes": 13,
+          "studio": "AtelierPontdarc",
+          "rating": 7.9,
+          "image": "uncle-from-another-world.jpg",
+          "description": "A man wakes from a 17-year coma and reveals to his nephew that he spent that entire time trapped in a fantasy world — and he has the magic and footage to prove it."
+        },
+        {
+          "id": "cautious-hero",
+          "title": "Cautious Hero: The Hero Is Overpowered but Overly Cautious",
+          "year": 2019,
+          "episodes": 12,
+          "studio": "White Fox",
+          "rating": 7.8,
+          "image": "cautious-hero.jpg",
+          "description": "A goddess summons a ridiculously powerful hero to save a world, but he refuses to take a single step until he is one thousand percent over-prepared for anything."
+        },
+        {
+          "id": "drifters",
+          "title": "Drifters",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "Hoods Drifters Studio",
+          "rating": 8.0,
+          "image": "drifters.jpg",
+          "description": "Famous historical figures — samurai, outlaws, generals — are pulled from their timelines into a fantasy world and forced to wage war against a dark empire."
+        }
+      ]
+    },
+    {
+      "id": "psychological",
+      "label": "Psychological",
+      "emoji": "🧠",
+      "tagline": "Mind-bending mysteries, dark twists, and deep human nature.",
+      "color": {
+        "primary": "#00B4D8",
+        "secondary": "#000A0F",
+        "accent": "#90E0EF",
+        "text": "#CAF0F8"
+      },
+      "anime": [
+        {
+          "id": "death-parade",
+          "title": "Death Parade",
+          "year": 2015,
+          "episodes": 12,
+          "studio": "Madhouse",
+          "rating": 8.2,
+          "image": "death-parade.jpg",
+          "description": "When two people die at the same time, they're sent to a mysterious bar to play games — darts, billiards, bowling — that determine whether their soul is reincarnated or erased."
+        },
+        {
+          "id": "erased",
+          "title": "Erased",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "A-1 Pictures",
+          "rating": 8.4,
+          "image": "erased.jpg",
+          "description": "A struggling manga artist is involuntarily sent back to his childhood to prevent a serial killer from murdering his classmate — and stop a tragedy that defined his life."
+        },
+        {
+          "id": "promised-neverland",
+          "title": "The Promised Neverland",
+          "year": 2019,
+          "episodes": 12,
+          "studio": "CloverWorks",
+          "rating": 8.6,
+          "image": "promised-neverland.jpg",
+          "description": "Three genius orphans discover a dark, horrifying secret about their idyllic orphanage and must plan a massive escape without letting on that they know. Season 1 is a masterpiece."
+        },
+        {
+          "id": "odd-taxi",
+          "title": "Odd Taxi",
+          "year": 2021,
+          "episodes": 13,
+          "studio": "OLM / P.I.C.S",
+          "rating": 8.6,
+          "image": "odd-taxi.jpg",
+          "description": "Don't let the animal characters fool you. A brilliant, Tarantino-esque mystery thriller built around a cynical walrus taxi driver whose passengers are all hiding something."
+        },
+        {
+          "id": "terror-in-resonance",
+          "title": "Terror in Resonance",
+          "year": 2014,
+          "episodes": 11,
+          "studio": "MAPPA",
+          "rating": 7.9,
+          "image": "terror-in-resonance.jpg",
+          "description": "Two mysterious teenage boys steal a prototype nuclear device and begin a cryptic cat-and-mouse game of riddles and terrorism against the Tokyo police."
+        },
+        {
+          "id": "madoka-magica",
+          "title": "Puella Magi Madoka Magica",
+          "year": 2011,
+          "episodes": 12,
+          "studio": "Shaft",
+          "rating": 8.4,
+          "image": "madoka-magica.jpg",
+          "description": "Looks like a cute, standard magical girl show. It is not. Within a few episodes it becomes one of the most psychologically dark and genre-redefining anime ever made."
+        },
+        {
+          "id": "id-invaded",
+          "title": "ID: Invaded",
+          "year": 2020,
+          "episodes": 13,
+          "studio": "NAZ",
+          "rating": 8.0,
+          "image": "id-invaded.jpg",
+          "description": "A sci-fi detective thriller where investigators dive into the literal subconscious minds of serial killers, navigating fractured dreamscapes to identify them before they kill again."
+        },
+        {
+          "id": "tomodachi-game",
+          "title": "Tomodachi Game",
+          "year": 2022,
+          "episodes": 12,
+          "studio": "Okuruto Noboru",
+          "rating": 7.7,
+          "image": "tomodachi-game.jpg",
+          "description": "A group of close friends is kidnapped and forced into a series of psychological games to pay off a massive debt — slowly dismantling everything they thought they knew about each other."
+        },
+        {
+          "id": "kakegurui",
+          "title": "Kakegurui",
+          "year": 2017,
+          "episodes": 12,
+          "studio": "MAPPA",
+          "rating": 7.7,
+          "image": "kakegurui.jpg",
+          "description": "An elite academy where the entire social hierarchy is determined by high-stakes gambling. A transfer student arrives who doesn't play to win money — she plays because she's addicted to the thrill."
+        },
+        {
+          "id": "classroom-of-the-elite",
+          "title": "Classroom of the Elite",
+          "year": 2017,
+          "episodes": 13,
+          "studio": "Lerche",
+          "rating": 7.9,
+          "image": "classroom-of-the-elite.jpg",
+          "description": "A prestigious school where students are ranked and must compete using any means necessary. The quiet, seemingly ordinary protagonist is playing a very different game than everyone else."
+        }
+      ]
+    },
+    {
+      "id": "comedy",
+      "label": "Comedy",
+      "emoji": "😂",
+      "tagline": "Pure laughs, absurd situations, and unforgettable character dynamics.",
+      "color": {
+        "primary": "#F4A100",
+        "secondary": "#130D00",
+        "accent": "#FFD166",
+        "text": "#FFF8E7"
+      },
+      "anime": [
+        {
+          "id": "kaguya-sama",
+          "title": "Kaguya-sama: Love is War",
+          "year": 2019,
+          "episodes": 12,
+          "studio": "A-1 Pictures",
+          "rating": 8.4,
+          "image": "kaguya-sama.jpg",
+          "description": "Two genius student council leaders have massive crushes on each other but are too proud to confess — so they wage elaborate psychological warfare to make the other crack first."
+        },
+        {
+          "id": "grand-blue",
+          "title": "Grand Blue Dreaming",
+          "year": 2018,
+          "episodes": 12,
+          "studio": "Zero-G",
+          "rating": 8.2,
+          "image": "grand-blue.jpg",
+          "description": "Technically about a college scuba diving club. Actually a relentless, laugh-out-loud comedy about drinking competitions, peer pressure, and absolutely unhinged misunderstandings."
+        },
+        {
+          "id": "asobi-asobase",
+          "title": "Asobi Asobase",
+          "year": 2018,
+          "episodes": 12,
+          "studio": "Lerche",
+          "rating": 7.8,
+          "image": "asobi-asobase.jpg",
+          "description": "Three middle school girls playing pastime games — on paper it sounds mild. In reality it's one of the most chaotic, unhinged, and brilliantly executed comedies ever animated."
+        },
+        {
+          "id": "hinamatsuri",
+          "title": "Hinamatsuri",
+          "year": 2018,
+          "episodes": 12,
+          "studio": "feel.",
+          "rating": 8.2,
+          "image": "hinamatsuri.jpg",
+          "description": "A mid-level Yakuza member's carefully organized life is wrecked when a deadpan girl with telekinetic powers crash-lands in his apartment and refuses to leave."
+        },
+        {
+          "id": "bocchi-the-rock",
+          "title": "Bocchi the Rock!",
+          "year": 2022,
+          "episodes": 12,
+          "studio": "CloverWorks",
+          "rating": 8.7,
+          "image": "bocchi-the-rock.jpg",
+          "description": "A masterpiece of visual comedy about a severely socially anxious girl who can only express herself through guitar — and somehow ends up in a band that plays live shows."
+        },
+        {
+          "id": "mashle",
+          "title": "Mashle: Magic and Muscles",
+          "year": 2023,
+          "episodes": 12,
+          "studio": "A-1 Pictures",
+          "rating": 7.9,
+          "image": "mashle.jpg",
+          "description": "Imagine a meathead with zero magical ability attending a school like Hogwarts — and solving every magical problem by punching it hard enough. A love letter to shonen absurdity."
+        },
+        {
+          "id": "daily-lives-of-high-school-boys",
+          "title": "Daily Lives of High School Boys",
+          "year": 2012,
+          "episodes": 12,
+          "studio": "Sunrise",
+          "rating": 8.2,
+          "image": "daily-lives-of-high-school-boys.jpg",
+          "description": "A sketch comedy classic that perfectly nails the dumb, harmless, and genuinely hilarious things teenage boys do with their time when absolutely nothing important is happening."
+        },
+        {
+          "id": "sakamoto",
+          "title": "Haven't You Heard? I'm Sakamoto",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "Studio Deen",
+          "rating": 7.8,
+          "image": "sakamoto.jpg",
+          "description": "A high school student so absurdly perfect, stylish, and composed that every mundane thing he does — including sweeping a floor or dodging a bee — becomes blindingly cool."
+        },
+        {
+          "id": "sleepy-princess",
+          "title": "Sleepy Princess in the Demon Castle",
+          "year": 2020,
+          "episodes": 12,
+          "studio": "Doga Kobo",
+          "rating": 7.7,
+          "image": "sleepy-princess.jpg",
+          "description": "A kidnapped human princess has zero interest in being rescued. She just wants the perfect night's sleep and will absolutely terrorize her demon captors to get it."
+        },
+        {
+          "id": "saiki-k",
+          "title": "The Disastrous Life of Saiki K.",
+          "year": 2016,
+          "episodes": 24,
+          "studio": "J.C. Staff / EGG FIRM",
+          "rating": 8.5,
+          "image": "saiki-k.jpg",
+          "description": "A high schooler with every psychic power imaginable wants only one thing — to be left alone and eat coffee jelly in peace. The universe refuses to cooperate. Relentlessly funny."
+        }
+      ]
+    },
+    {
+      "id": "slice-of-life",
+      "label": "Slice of Life",
+      "emoji": "☕",
+      "tagline": "Relaxing, slow-paced stories about everyday life, hobbies, and growth.",
+      "color": {
+        "primary": "#52B788",
+        "secondary": "#021A0D",
+        "accent": "#95D5B2",
+        "text": "#D8F3DC"
+      },
+      "anime": [
+        {
+          "id": "laid-back-camp",
+          "title": "Laid-Back Camp",
+          "year": 2018,
+          "episodes": 12,
+          "studio": "C-Station",
+          "rating": 8.3,
+          "image": "laid-back-camp.jpg",
+          "description": "The peak of comfy anime. Just girls going winter camping, eating good food, and enjoying breathtaking scenery. There is no conflict. There doesn't need to be."
+        },
+        {
+          "id": "barakamon",
+          "title": "Barakamon",
+          "year": 2014,
+          "episodes": 12,
+          "studio": "Kinema Citrus",
+          "rating": 8.3,
+          "image": "barakamon.jpg",
+          "description": "An arrogant young calligrapher punches a critic and gets exiled to a rural island. The quirky, warm villagers — especially one chaotic little girl — slowly change him completely."
+        },
+        {
+          "id": "a-place-further-than-the-universe",
+          "title": "A Place Further Than the Universe",
+          "year": 2018,
+          "episodes": 13,
+          "studio": "Madhouse",
+          "rating": 8.7,
+          "image": "a-place-further-than-the-universe.jpg",
+          "description": "An inspiring, genuinely emotional show about four high school girls who decide — against all odds — to join a real expedition to Antarctica together."
+        },
+        {
+          "id": "violet-evergarden",
+          "title": "Violet Evergarden",
+          "year": 2018,
+          "episodes": 13,
+          "studio": "Kyoto Animation",
+          "rating": 8.7,
+          "image": "violet-evergarden.jpg",
+          "description": "Possibly the most visually beautiful anime ever made. A child soldier learns what it means to be human by ghostwriting emotional letters for strangers across the world."
+        },
+        {
+          "id": "flying-witch",
+          "title": "Flying Witch",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "J.C. Staff",
+          "rating": 7.7,
+          "image": "flying-witch.jpg",
+          "description": "A teenage witch moves to the countryside. The magic is gentle and whimsical, the pace is slow and warm, and the whole show feels like a long exhale on a quiet afternoon."
+        },
+        {
+          "id": "sweetness-and-lightning",
+          "title": "Sweetness & Lightning",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "TMS Entertainment",
+          "rating": 8.0,
+          "image": "sweetness-and-lightning.jpg",
+          "description": "A recently widowed single father learns how to cook proper, loving meals for his young daughter with the help of one of his students. Quietly heartwarming."
+        },
+        {
+          "id": "tanaka-kun",
+          "title": "Tanaka-kun is Always Listless",
+          "year": 2016,
+          "episodes": 12,
+          "studio": "Silver Link",
+          "rating": 7.8,
+          "image": "tanaka-kun.jpg",
+          "description": "A relaxing comedy about a boy whose only ambition in life is to be as perfectly, transcendently lazy as possible — and the friends who carry him around and enable it."
+        },
+        {
+          "id": "usagi-drop",
+          "title": "Usagi Drop",
+          "year": 2011,
+          "episodes": 11,
+          "studio": "Production I.G",
+          "rating": 8.2,
+          "image": "usagi-drop.jpg",
+          "description": "A 30-year-old bachelor steps up to adopt his grandfather's young illegitimate daughter when the rest of the family shuns her. A tender, grounded story about unexpected family."
+        },
+        {
+          "id": "non-non-biyori",
+          "title": "Non Non Biyori",
+          "year": 2013,
+          "episodes": 12,
+          "studio": "Silver Link",
+          "rating": 8.0,
+          "image": "non-non-biyori.jpg",
+          "description": "Daily life in a remote countryside school where students of all ages share one classroom, the nearest convenience store is miles away, and time moves at a different pace entirely."
+        },
+        {
+          "id": "my-roommate-is-a-cat",
+          "title": "My Roommate is a Cat",
+          "year": 2019,
+          "episodes": 12,
+          "studio": "Zero-G",
+          "rating": 7.9,
+          "image": "my-roommate-is-a-cat.jpg",
+          "description": "A socially anxious novelist adopts a stray cat. Half the episode is from his perspective. The other half is hilariously retold from the cat's completely different point of view."
+        }
+      ]
+    }
+  ]
+}

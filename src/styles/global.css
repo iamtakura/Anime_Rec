@@ -56,6 +56,25 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
 }
 
+/* Custom Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--genre-primary, #333) var(--genre-secondary, #080808);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--genre-secondary, #080808);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--genre-primary, #333);
+  border-radius: 3px;
+}
+
 /* Smooth Scrolling styling for Lenis */
 html.lenis,
 html.lenis body {

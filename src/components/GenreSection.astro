@@ -185,7 +185,7 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
       (section as HTMLElement).style.backgroundColor = secondaryColor;
     }
 
-    // ProgressNav Active State Sync
+    // ProgressNav & Preview Panel Active State Sync
     const updateNav = () => {
       document.querySelectorAll('.progress-nav .nav-item').forEach(item => {
         if (item.getAttribute('data-target') === genreId) {
@@ -196,12 +196,25 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
       });
     };
 
+    const togglePreview = (visible: boolean) => {
+      const panel = document.getElementById(`preview-${genreId}`);
+      if (panel) {
+        if (visible) {
+          panel.classList.add('preview--visible');
+        } else {
+          panel.classList.remove('preview--visible');
+        }
+      }
+    };
+
     ScrollTrigger.create({
       trigger: section,
       start: 'top 50%',
       end: 'bottom 50%',
-      onEnter: updateNav,
-      onEnterBack: updateNav,
+      onEnter: () => { updateNav(); togglePreview(true); },
+      onEnterBack: () => { updateNav(); togglePreview(true); },
+      onLeave: () => togglePreview(false),
+      onLeaveBack: () => togglePreview(false),
     });
 
   });
@@ -250,6 +263,8 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
     height: calc(100vh - 12rem);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    width: 100%;
   }
 
   .intro-column {
@@ -281,6 +296,8 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
     color: var(--primary-color);
     text-shadow: 0 0 30px rgba(0,0,0,0.5);
     perspective: 1000px;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   .genre-title-inner {
@@ -313,8 +330,13 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
   }
 
   .preview-panel {
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    height: calc(100vh - 12rem);
+    z-index: 100;
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.4);
@@ -324,22 +346,30 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .preview-panel.preview--visible {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .preview-image-container {
     width: 100%;
-    height: 50%;
+    aspect-ratio: 3 / 4;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 1.5rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    background: rgba(255,255,255,0.02);
+    background: transparent;
   }
 
   .preview-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: opacity 0.15s ease, transform 0.15s ease;
   }
 
@@ -369,6 +399,9 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
     .layout-grid {
       grid-template-columns: 250px 1fr 300px;
       gap: 2rem;
+    }
+    .preview-panel {
+      width: 300px;
     }
   }
 

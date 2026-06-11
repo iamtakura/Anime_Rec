@@ -10,14 +10,13 @@ interface Props {
     color: { primary: string; secondary: string; accent: string };
     anime: any[];
   };
-  images: Record<string, any>;
 }
 
-const { genre, images } = Astro.props;
+const { genre } = Astro.props;
 
 // Pass the first anime as initial preview state
 const firstAnime = genre.anime[0] || {};
-const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
+const firstImage = firstAnime.image;
 ---
 
 <section 
@@ -47,8 +46,7 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
       <!-- Middle Column: Anime List -->
       <div class="anime-list">
         {genre.anime.map((animeItem: any) => {
-          const imageSrc = images[`/src/assets/images/${animeItem.image}`]?.default;
-          return <AnimeCard anime={animeItem} imageSrc={imageSrc} />;
+          return <AnimeCard anime={animeItem} />;
         })}
       </div>
 
@@ -56,7 +54,7 @@ const firstImage = images[`/src/assets/images/${firstAnime.image}`]?.default;
       <div class="sticky-column preview-column">
         <div class="preview-panel" id={`preview-${genre.id}`}>
           <div class="preview-image-container">
-            {firstImage && <img src={firstImage.src} alt={firstAnime.title} class="preview-image current" id={`preview-img-${genre.id}`} />}
+            {firstImage && <img src={firstImage} alt={firstAnime.title} class="preview-image current" id={`preview-img-${genre.id}`} loading="lazy" decoding="async" />}
           </div>
           <div class="preview-info">
             <h3 class="preview-title" id={`preview-title-${genre.id}`}>{firstAnime.title}</h3>

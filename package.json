@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "fetch-data": "node scripts/fetch-anime.mjs",
+    "build": "npm run fetch-data && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

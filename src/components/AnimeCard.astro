@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
   anime: {
     id: string;
@@ -9,17 +7,17 @@ interface Props {
     episodes: number;
     rating: number;
     description: string;
+    image: string;
   };
-  imageSrc: any;
 }
 
-const { anime, imageSrc } = Astro.props;
+const { anime } = Astro.props;
 ---
 
-<div class="anime-card" tabindex="0" data-anime={JSON.stringify(anime)} data-image={imageSrc?.src}>
+<div class="anime-card" tabindex="0" data-anime={JSON.stringify(anime)} data-image={anime.image}>
   <div class="card-image-wrapper">
-    {imageSrc && <Image src={imageSrc} alt={anime.title} width={300} height={425} class="card-image" />}
-    {!imageSrc && <div class="card-image-placeholder">No Image</div>}
+    {anime.image && <img src={anime.image} alt={anime.title} class="card-image" loading="lazy" decoding="async" />}
+    {!anime.image && <div class="card-image-placeholder">No Image</div>}
   </div>
   <div class="card-content">
     <h3 class="card-title">{anime.title}</h3>
